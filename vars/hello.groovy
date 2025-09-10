@@ -1,3 +1,10 @@
-def call(){
-  echo "Hello Dosto, video pasand aa rhi ho toh bhai, subscribe!"
+stage('OWASP: Dependency check') {
+    steps {
+        script {
+            dependencyCheck additionalArguments: '', 
+                            outdir: 'dependency-check-report', 
+                            scanpath: '.', 
+                            datadir: ''
+        }
+    }
 }
