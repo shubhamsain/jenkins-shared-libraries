@@ -1,16 +1,5 @@
 def call() {
-    echo "Running OWASP Dependency Check..."
-
-    // The actual OWASP check command
-    sh '''#!/bin/bash
-    dependency-check.sh \
-        --project "Wanderlust" \
-        --scan ./ \
-        --format XML \
-        --out . \
-        --disableAssembly
-    '''
-    
-    // Publish the report
+    echo 'Running OWASP Dependency Check via Jenkins Plugin...'
+    dependencyCheck additionalArguments: '--scan ./ --format XML --disableAssembly', odcInstallation: 'OWASP'
     dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
 }
